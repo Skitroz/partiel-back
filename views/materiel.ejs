@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Liste des Matériels</title>
+</head>
+<body>
+  <%- include('partials/menu') %>
+  <h1>Liste des Matériels</h1>
+  <a href="/materiel/nouveau">Ajouter un nouveau matériel</a>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Quantité</th>
+        <th>Prix</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% materiels.forEach(materiel => { %>
+        <tr>
+          <td><%= materiel.nom %></td>
+          <td><%= materiel.quantite %></td>
+          <td><%= materiel.prix %> €</td>
+          <td>
+            <a href="/materiel/<%= materiel.id %>/modifier">Modifier</a>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>

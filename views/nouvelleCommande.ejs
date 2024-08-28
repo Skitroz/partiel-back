@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouvelle commande</title>
+</head>
+<body>
+    <%- include('partials/menu') %>
+    <h1>Nouvelle commande</h1>
+    <form action="/commande" method="POST">
+        <label for="nomClient">Nom du client :</label>
+        <input type="text" id="nomClient" name="nomClient" required><br>
+
+        <h2>Matériels à louer</h2>
+        <% materiels.forEach(materiel => { %>
+            <div>
+                <label>
+                    <input type="checkbox" name="materiels[<%= materiel.id %>][id]" value="<%= materiel.id %>">
+                    <%= materiel.nom %> (Disponible : <%= materiel.quantite %>, Prix : <%= materiel.prix %> €/jour)
+                </label>
+                <input type="number" name="materiels[<%= materiel.id %>][quantite]" min="1" max="<%= materiel.quantite %>" placeholder="Quantité">
+            </div>
+        <% }); %>
+
+        <button type="submit">Créer la commande</button>
+    </form>
+</body>
+</html>

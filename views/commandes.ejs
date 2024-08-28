@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commandes</title>
+</head>
+<body>
+    <%- include('partials/menu') %>
+    <h1>Liste des commandes</h1>
+    <a href="/commande/nouveau">Créer une nouvelle commande</a>
+    <ul>
+        <% commandes.forEach(commande => { %>
+            <li>
+                <strong>Client : <%= commande.nomClient %></strong><br>
+                Prix Total : <%= commande.prixTotal %> €<br>
+                Matériels loués :
+                <ul>
+                    <% commande.materiels.forEach(materiel => { %>
+                        <li><%= materiel.nom %> - Quantité : <%= materiel.CommandeMateriel.quantite %></li>
+                    <% }); %>
+                </ul>
+                <form action="/commande/<%= commande.id %>/rendre" method="POST">
+                    <button type="submit">Rendre la commande</button>
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
